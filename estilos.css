@@ -1,0 +1,148 @@
+/* gimnasios */
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    margin: 25px 20px;
+    gap: 25px;
+    width: 95%;
+}
+
+.card-img-top {
+    transition: all 0.6s;
+}
+
+.card-img-top:hover {
+    transform: scale(0.9);
+    animation-name: efecto;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-direction: alternate;
+}
+
+.card-text{
+    text-align: center;
+}
+
+@keyframes efecto {
+    0% {
+        border-radius: 80px 20px 60px 40px;
+    }
+
+    25% {
+        border-radius: 100px 40px 80px 60px;
+    }
+
+    50% {
+        border-radius: 20px 60px 100px 80px;
+    }
+
+    75% {
+        border-radius: 40px 80px 20px 100px;
+    }
+
+    100% {
+        border-radius: 60px 10px 40px 20px;
+    }
+}
+
+.btn-grad {
+    background-image: linear-gradient(to right, #DA22FF 0%, rgba(246, 217, 100, 0.862745098) 51%, #DA22FF 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    width: 90%;
+}
+
+.btn-grad:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+/* boostrap */
+.form1 {
+    margin-top: 60px;
+}
+
+main {
+    height: 600px;
+    width: 100%;
+}
+
+aside h1 {
+    margin-top: 60px;
+    padding: 20px;
+}
+
+aside p {
+    text-align: right;
+    font-size: 18px;
+}
+
+.cont {
+    width: 80%;
+    margin: 5px;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+#titleSpan {
+    font-size: 50px;
+}
+
+#titleParrafo {
+    text-align: left;
+    font-size: 20px;
+}
+
+.cont2 {
+    width: 100%;
+    margin: 5px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+@media (max-width: 756px) {
+    .titleContacto1 {
+        display: none;
+    }
+
+    .form1 {
+        display: none;
+    }
+}
+
+@media (min-width: 757px) {
+    .titleContacto2 {
+        margin-top: 50px;
+        display: none;
+        justify-content: center;
+    }
+
+    .form2 input {
+        width: 100%;
+    }
+
+    .form2 {
+        display: none;
+        justify-content: center;
+    }
+}
+
+/* footer */
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}

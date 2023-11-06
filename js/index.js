@@ -2,15 +2,20 @@ let contador = 0;
 let suma = 0;
 let descuento = 0;
 let total = 0;
+let cantArticulo = 0;
 
-const CANT_ARTICULO = parseInt(prompt("Esta es la lista de nuestros articulos disponibles: 1. Pantalones / 2. Camisetas / 3. Imanes / 4. Ponchos / 5. Pulseras / 6. Hamacas / 7. Tazas / 8. Vestidos / 9. Sandalias / 10. Gorras, ¿Cuántos deseas elegir?"));
+while (true) {
+    cantArticulo = parseInt(prompt("Esta es la lista de nuestros articulos disponibles: 1. Pantalones / 2. Camisetas / 3. Imanes / 4. Ponchos / 5. Pulseras / 6. Hamacas / 7. Tazas / 8. Vestidos / 9. Sandalias / 10. Gorras, ¿Cuántos deseas elegir?"));
+    if (isNaN(cantArticulo) || cantArticulo <= 0){
+        alert("Por favor, ingresa un número válido mayor a cero.");
+    }
+    else {
+        break;
+    }
+} 
+        
 
-// while (isNaN(CANT_ARTICULO)  || CANT_ARTICULO < 1 ) {
-//     alert("Por favor, ingresa un número válido mayor a cero.");
-//     CANT_ARTICULO = parseInt(prompt("Esta es la lista de nuestros artículos disponibles: 1. Pantalones / 2. Camisetas / 3. Imanes / 4. Ponchos / 5. Pulseras / 6. Hamacas / 7. Tazas / 8. Vestidos / 9. Sandalias / 10. Gorras, ¿Cuántos deseas elegir?"));
-// }
-
-while (contador < CANT_ARTICULO) {
+while (contador < cantArticulo) {
     const ARTICULO = parseInt(prompt("1. Pantalones $25 /  2. Camisetas $15 / 3. Imanes $10 / 4. Ponchos $85 / 5. Pulseras $20 / 6. Hamacas $40 / 7. Tazas $12 / 8. Vestidos $45 / 9. Sandalias $28 / 10. Gorras $20 / ¿Qué deseas comprar?"));
 
     if (ARTICULO >= 1 && ARTICULO <= 10) {
@@ -63,7 +68,6 @@ while (contador < CANT_ARTICULO) {
 }
 
 
-const METODO_DE_PAGO = parseInt(prompt("¿Qué método de pago deseas usar? 1. Efectivo / 2. Tarjeta / 3. Transferencia"));
 
 function pagoEnEfectivo() {
     descuento = suma * 0.05;
@@ -75,21 +79,38 @@ function pagoEnTarjeta() {
     total = suma + descuento;
 }
 
-if (METODO_DE_PAGO === 1) {
-    alert("Por seleccionar el método de pago en efectivo, tienes un descuento del 5%");
-    pagoEnEfectivo();
-} else if (METODO_DE_PAGO === 2) {
-    alert("Por seleccionar el método de pago con tarjeta, te sumamos el 7% de impuesto");
-    pagoEnTarjeta();
-} else if (METODO_DE_PAGO === 3) {
-    alert("Por seleccionar el método de pago de transferencia, pagas el valor neto");
-    total = suma;
-} else {
-    alert("No has seleccionado ningún método de pago");
+while (true){
+    const METODO_DE_PAGO = parseInt(prompt("¿Qué método de pago deseas usar? 1. Efectivo / 2. Tarjeta / 3. Transferencia"));
+    
+    if (METODO_DE_PAGO === 1) {
+        alert("Por seleccionar el método de pago en efectivo, tienes un descuento del 5%");
+        pagoEnEfectivo();
+        break;
+    } else if (METODO_DE_PAGO === 2) {
+        alert("Por seleccionar el método de pago con tarjeta, te sumamos el 7% de impuesto");
+        pagoEnTarjeta();
+        break;
+    } else if (METODO_DE_PAGO === 3) {
+        alert("Por seleccionar el método de pago de transferencia, pagas el valor neto");
+        total = suma;
+        break;
+    } else {
+        alert("No has seleccionado ningún método de pago");
+        
+    } 
 }
 
-alert("El subtotal de tu compra es: $" + suma);
-alert("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
+
+
+    alert("El subtotal de tu compra es: $" + suma);
+    alert("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
+
+    // CONTINUAR = prompt("desea seguir comprando?  Si / No")
+
+    // if (CONTINUAR == "No" ){
+    //     return false;
+    // }
+    
 
 
 
