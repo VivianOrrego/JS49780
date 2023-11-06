@@ -105,12 +105,7 @@ while (true){
     alert("El subtotal de tu compra es: $" + suma);
     alert("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
 
-    // CONTINUAR = prompt("desea seguir comprando?  Si / No")
 
-    // if (CONTINUAR == "No" ){
-    //     return false;
-    // }
-    
 
 
 
