@@ -13,7 +13,6 @@ while (true) {
         break;
     }
 } 
-        
 
 while (contador < cantArticulo) {
     const ARTICULO = parseInt(prompt("1. Pantalones $25 /  2. Camisetas $15 / 3. Imanes $10 / 4. Ponchos $85 / 5. Pulseras $20 / 6. Hamacas $40 / 7. Tazas $12 / 8. Vestidos $45 / 9. Sandalias $28 / 10. Gorras $20 / ¿Qué deseas comprar?"));
@@ -67,8 +66,6 @@ while (contador < cantArticulo) {
     }
 }
 
-
-
 function pagoEnEfectivo() {
     descuento = suma * 0.05;
     total = suma - descuento;
@@ -99,8 +96,6 @@ while (true){
         
     } 
 }
-
-
 
     alert("El subtotal de tu compra es: $" + suma);
     alert("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
