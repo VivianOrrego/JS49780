@@ -28,7 +28,6 @@ while (true) {
 
 miCompra = [];
 
-
 function buscarPrecio() {
     const PRODUCTOS = [
         
@@ -86,7 +85,6 @@ function buscarPrecio() {
         alert("El producto no se encuentra");
     }
 }
-
 
 console.log(PRODUCTOS);
 
