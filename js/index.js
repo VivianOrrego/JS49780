@@ -12,6 +12,51 @@ let descuento = 0;
 let total = 0;
 let cantArticulo = 0;
 
+const PRODUCTOS = [
+        
+    { 
+        producto:"Pantalones",
+        precio:25
+    },
+    { 
+        producto:"Camisetas",
+        precio:15
+    },
+    { 
+        producto:"Imanes",
+        precio:10
+    },
+    { 
+        producto:"ponchos",
+        precio:85
+    },
+    { 
+        producto:"pulseras",
+        precio:20
+    },
+    { 
+        producto:"hamacas",
+        precio:40
+    },
+    { 
+        producto:"tazas",
+        precio:12
+    },
+    { 
+        producto:"vestidos",
+        precio:40
+    },
+    { 
+        producto:"sandalias",
+        precio:25
+    },
+    { 
+        producto:"gorras",
+        precio:20
+    }
+    
+]
+
 while (true) {
     cantArticulo = parseInt(prompt("Esta es la lista de nuestros articulos disponibles: \n 1. Pantalones \n 2. Camisetas \n 3. Imanes \n 4. Ponchos \n 5. Pulseras \n 6. Hamacas \n 7. Tazas \n 8. Vestidos \n 9. Sandalias \n 10. Gorras \n 11. Consultar precios \n ¿Cuántos deseas elegir?"));
 
@@ -20,7 +65,6 @@ while (true) {
     } else if (cantArticulo == 11){
         buscarPrecio();
     }
-    
     else {
         break;
     }
@@ -29,50 +73,8 @@ while (true) {
 miCompra = [];
 
 function buscarPrecio() {
-    const PRODUCTOS = [
-        
-        { 
-            producto:"Pantalones",
-            precio:25
-        },
-        { 
-            producto:"Camisetas",
-            precio:15
-        },
-        { 
-            producto:"Imanes",
-            precio:10
-        },
-        { 
-            producto:"ponchos",
-            precio:85
-        },
-        { 
-            producto:"pulseras",
-            precio:20
-        },
-        { 
-            producto:"hamacas",
-            precio:40
-        },
-        { 
-            producto:"tazas",
-            precio:12
-        },
-        { 
-            producto:"vestidos",
-            precio:40
-        },
-        { 
-            producto:"sandalias",
-            precio:25
-        },
-        { 
-            producto:"gorras",
-            precio:20
-        }
-        
-    ]
+    PRODUCTOS
+    
     const BUSCADOR = prompt("Busca el precio de tu producto");
     // Usamos una función de callback en el método find
     const PRODUCTO_ENCONTRADO = PRODUCTOS.find((producto) =>
@@ -81,6 +83,7 @@ function buscarPrecio() {
     if (PRODUCTO_ENCONTRADO) {
         console.log("El precio del producto es: ");
         console.table(PRODUCTO_ENCONTRADO);
+        alert(`El precio de ${PRODUCTO_ENCONTRADO.producto} es: ${PRODUCTO_ENCONTRADO.precio}`)
     } else {
         alert("El producto no se encuentra");
     }
