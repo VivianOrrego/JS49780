@@ -142,10 +142,12 @@ function vaciarCarrito(){
 generarTarjetaProductos();
 mostrarCarrito();
 
+ //Funciones para los metodos de pago
 function pagoEnEfectivo() {
     const suma = JSON.parse(localStorage.getItem('total'));
     descuento = suma * 0.05;
-    total = suma - descuento;    
+    total = suma - descuento; 
+    swal("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
     vaciarCarrito();
 }
 
@@ -153,38 +155,14 @@ function pagoEnTarjeta() {
     const suma = JSON.parse(localStorage.getItem('total'));
     descuento = suma * 0.07;
     total = suma + descuento;
+    swal("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
     vaciarCarrito();
 }
 
 function pagoTransferencia(){
     const suma = JSON.parse(localStorage.getItem('total'));
         total = suma;
+        swal("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
         vaciarCarrito();
 }
 
-function pagar() {
-    while (true) {
-        const METODO_DE_PAGO = parseInt(prompt("¿Qué método de pago deseas usar? \n 1. Efectivo \n 2. Tarjeta \n 3. Transferencia"));
-    
-        if (METODO_DE_PAGO === 1) {
-            swal("Por seleccionar el método de pago en efectivo, tienes un descuento del 5%");
-            pagoEnEfectivo();
-            break;
-        } else if (METODO_DE_PAGO === 2) {
-            swal("Por seleccionar el método de pago con tarjeta, te sumamos el 7% de impuesto");
-            pagoEnTarjeta();
-            break;
-        } else if (METODO_DE_PAGO === 3) {
-            swal("Por seleccionar el método de pago de transferencia, pagas el valor neto");
-            pagoTransferencia();
-            break;
-        } else {
-            swal("No has seleccionado ningún método de pago");
-    
-        }
-    }
-    swal("El subtotal de tu compra es: $" + suma);
-    console.log(`El subtotal de tu compra es: ${suma}`);
-    swal("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
-    console.log(`El total de tu compra con el beneficio aplicado es: ${total}`); 
-}

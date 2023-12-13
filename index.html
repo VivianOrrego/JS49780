@@ -9,48 +9,99 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <!-- Fin Bs -->
     <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Bellas Artes</title>
 </head>
 
 <body>
-    <!-- Inicia el Carrito -->
-    <h1>carrito de compras</h1>
-    <div id="carrito">
-        <h2>producto de carrito</h2>
-        <ul id="lista-productos"></ul>
-        <p>total: <span id="total">0</span></p>
-        <button onclick="vaciarCarrito()" class="btn btn-grad form-control mb-3">vaciando el carrito</button>
-        <!-- <button onclick="pagar()" class="btn btn-grad form-control mb-3">Pagar </button> -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-grad form-control mb-3
-        " data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Pagar
-        </button>
+    <!-- Inicia Navbar -->
+    <nav class="navbar navbar-expand-md  navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand logo3" href="index.html">Bellas <span class="logo4">Artes</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" collapse navbar-collapse " id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <img src="img/shopping-cart.png" alt="carrito de compras" width="40px" data-bs-toggle="modal" data-bs-target="#carritoModal" style="cursor: pointer;">
+                    </li>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliga su Metodo de Pago</h1>
-                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Fin Navbar -->
+    <!-- Modal icono carrito -->
+    <!-- Modal -->
+    <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="carritoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="carritoModalLabel">Carrito de compras</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carrito ">
+                        <h5>Producto de carrito</h5>
+                        <ul id="lista-productos"></ul>
+                        <h5>total: <span id="total">0</span></h5>
+                        <button onclick="vaciarCarrito()" class="btn btn-grad form-control mb-3">vaciando el carrito</button>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-grad form-control mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Pagar
+                        </button>
                     </div>
-                    <div class="modal-body">
-                        <button class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Pago En Efectivo</button>
-                    </div>
-                    <div class="modal-body">
-                        <button class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Pago En Tarjeta</button>
-                    </div>
-                    <div class="modal-body">
-                        <button class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Pago En Transferencia</button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Inicia el Carrito -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Eliga su Metodo de Pago</h1>
+                            <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="text-align: center;">Con este metodo de pago tiene un 5% de descuento</p>
+                            <button onclick="{pagoEnEfectivo()}" data-bs-dismiss="modal"
+                                class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title"
+                                data-bs-content="Popover body content is set in this attribute.">Pago En
+                                Efectivo</button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="text-align: center;">Con este metodo de pago tiene un recargo del 7% de impuesto
+                            </p>
+                            <button onclick="{pagoEnTarjeta()}" data-bs-dismiss="modal"
+                                class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title"
+                                data-bs-content="Popover body content is set in this attribute.">Pago En
+                                Tarjeta</button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="text-align: center;">Con este metodo depago te queda a pagar el valor neto</p>
+                            <button onclick="{pagoTransferencia()}" data-bs-dismiss="modal"
+                                class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title"
+                                data-bs-content="Popover body content is set in this attribute.">Pago En
+                                Transferencia</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    
+
     <!-- Fin Carrito -->
     <!-- Catalogo de productos -->
     <div id="productos" class="container-fluid"></div>
