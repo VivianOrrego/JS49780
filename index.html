@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="estilos.css" />
     <title>Bellas Artes</title>
 </head>
+
 <body>
     <!-- Inicia el Carrito -->
     <h1>carrito de compras</h1>
@@ -19,7 +20,36 @@
         <ul id="lista-productos"></ul>
         <p>total: <span id="total">0</span></p>
         <button onclick="vaciarCarrito()" class="btn btn-grad form-control mb-3">vaciando el carrito</button>
-        <button onclick="pagar()" class="btn btn-grad form-control mb-3">Pagar </button>
+        <!-- <button onclick="pagar()" class="btn btn-grad form-control mb-3">Pagar </button> -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-grad form-control mb-3
+        " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Pagar
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliga su Metodo de Pago</h1>
+                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Pago En Efectivo</button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Pago En Tarjeta</button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="btn btn-grad form-control mb-3" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Pago En Transferencia</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Fin Carrito -->
     <!-- Catalogo de productos -->
@@ -29,7 +59,7 @@
     <footer>
         <p>Vivian Orrego</p>
     </footer>
-    
+
     <!-- swall alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- inicia BS -->
