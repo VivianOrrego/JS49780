@@ -41,6 +41,44 @@ font-family: 'Roboto Slab', serif; */
   color: #000 !important;
 }
 
+/* carrito */
+.count-products{
+  position: absolute;
+  top: 55%;
+  left: 94%;
+
+  background-color: rgb(245, 208, 25);
+  color: #000;
+  width: 20px;
+  height: 20px;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+#contador-productos{
+  font-size: 12px;
+}
+
+.info-cart-product{
+  display: flex;
+  justify-content: space-between;
+  flex: 0.8;
+}
+
+.icon-close{
+  width: 25px;
+  height: 25px;
+}
+
+.icon-close:hover{
+  stroke: red;
+  cursor: pointer;
+}
+/* carrito fin */
 .logo3 {
   color: white;
   font-size: 30px;
