@@ -34,21 +34,19 @@
         </div>
     </nav>
     <!-- Fin Navbar -->
-    <!-- Modal icono carrito -->
     <!-- Modal -->
     <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="carritoModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="carritoModalLabel">Carrito de compras</h1>
+                    <h1 class="modal-title fs-5" id="carritoModalLabel">Carrito de Compras</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="carrito ">
-                        <h5>Producto de carrito</h5>
-                        <ul id="lista-productos"></ul>
-                        <h5>total: <span id="total">0</span></h5>
-                        <button onclick="vaciarCarrito()" class="btn btn-grad form-control mb-3">vaciando el carrito</button>
+                        <div id="lista-productos"></div>
+                        <h5 style="text-align: center;">Total: <span id="total">0</span></h5>
+                        <button onclick="vaciarCarrito()" class="btn btn-grad form-control mb-3 mt-4" >vaciando el carrito</button>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-grad form-control mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Pagar
@@ -56,7 +54,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn  form-control mb-6" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

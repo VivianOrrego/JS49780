@@ -88,84 +88,101 @@ function generarTarjetaProductos() {
         PRODUCTOS_ELEMENTOS.classList.add('producto');
         PRODUCTOS_ELEMENTOS.innerHTML = `
         
-            <aside class="card" style="width:300px">
+            <div class="card" style="width:300px">
                 <img class="card-img-top" src="${producto.img}">
                 <div class="card-body">
                     <p class="card-text">${producto.producto}</p>
                     <p class="card-text">${producto.precio}</p>
-                    <button class="btn btn-grad form-control mb-3" onclick="agregarAlCarrito(${producto.id},${producto.producto}, ${producto.precio}),${producto.cantidad}"> Añadir al Carrito </button>
+                    <button class="btn btn-grad form-control mb-3" id="boton${producto.id}" > Añadir al Carrito </button>
                 </div>
-            </aside>
+            </div>
         
         `;
         CONTENEDOR_PRODUCTOS.appendChild(PRODUCTOS_ELEMENTOS)
-    })
-
-;}
-
-
-// Funcion Agregar al Carrito
-
-function agregarAlCarrito(id,producto,precio,cantidad){
+        const BOTON = document.getElementById(`boton${producto.id}`);
+        BOTON.addEventListener('click', () =>{
+        agregarAlCarrito(producto.id, producto.producto, producto.precio, producto.cantidad);
     
-    const carrito= JSON.parse(localStorage.getItem('carrito')) || [];
-    console.log(carrito);
-    carrito.push({id, producto, precio, cantidad});
+        });
+    });
+
+}
+// Funcion Agregar al Carrito
+//
+
+function agregarAlCarrito(id, producto, precio, cantidad) {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    
+    // Verificar si el producto ya está en el carrito
+    const productoEnCarrito = carrito.find(item => item.id === id);
+    
+    if (productoEnCarrito) {
+        // Si el producto ya está en el carrito, actualizar la cantidad
+        productoEnCarrito.cantidad += cantidad;
+    } else {
+        // Si el producto no está en el carrito, agregarlo con su cantidad
+        const productoSeleccionado = PRODUCTOS.find(item => item.id === id);
+        carrito.push({ id, producto, precio, cantidad, img: productoSeleccionado.img });
+    }
+    
     localStorage.setItem('carrito', JSON.stringify(carrito));
     mostrarCarrito();
-    
 }
-;
+
 
 //funcion mostrar los productos en el carrito
 
 function mostrarCarrito() {
-    const carrito = JSON.parse(localStorage.getItem('carrito'))|| [];
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const listaProductos = document.getElementById('lista-productos');
     const totalElement = document.getElementById('total');
+    const contadorContenedor = document.getElementById('contador-productos');
     let total = 0;
     let count = 0;
-    let totalOfProducts = 0;
-
     listaProductos.innerHTML = '';
 
     carrito.forEach(producto => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-        <div class="info-cart-product ">
-            <span>${producto.id}</span>
-            <span>${producto.producto}</span>
-            <span>$${producto.precio}</span>
-            <span>$${producto.cantidad}</span>
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="icon-close"
-            >
-            <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-            />
-            </svg>
+        const card = document.createElement('div');
+        // card.classList.add("col-xl-3", "col-md-6", "col-sm-12");
+        card.innerHTML = `
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-6">
+                <img class="img-fluid rounded-start" src="${producto.img}">
+                </div>
+                <div class="col-md-6">
+                <div class="card-body">
+                    <h3 class="card-title">${producto.producto}</h3>
+                    <h6 class="card-title">Precio: $${producto.precio}</h6>
+                    <h6 class="card-title"> Cantidad: ${producto.cantidad}</h6>
+                    <button class="btn btn-grad form-control mb-3 mt-4" id="eliminar${producto.id}" > Eliminar </button>
+                </div>
+                </div>
             </div>
+        </div>
         `;
-        listaProductos.appendChild(listItem);
-        count += producto;    
-        total += producto.precio;
-
-        // total =
-		// 	total + parseInt(producto.cantidad * producto.precio.slice(1));
-		// totalOfProducts = totalOfProducts + producto.precio;
-
+        listaProductos.appendChild(card);
+        total += producto.precio * producto.cantidad;
+        count += producto.cantidad;
         localStorage.setItem("total", JSON.stringify(total));
+
+        //eliminar el productoeliminar
+        const boton = document.getElementById(`eliminar${producto.id}`);
+        boton.addEventListener("click", () => {
+            eliminarDelCarrito(producto.id);
+        });
     });
-    
-    totalElement.textContent = total;
-};
+
+    totalElement.textContent = total.toFixed(2);
+    contadorContenedor.textContent = count;
+}
+
+function eliminarDelCarrito(id) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito = carrito.filter(producto => producto.id !== id);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarCarrito();
+}
 
 //function para vaciar el carrito
 
@@ -200,5 +217,4 @@ function pagoTransferencia(){
         total = suma;
         swal("El total de tu compra aplicando tu beneficio según tu método de pago seleccionado es: $" + total);
         vaciarCarrito();
-}
-
+};
