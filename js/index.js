@@ -131,7 +131,6 @@ function agregarAlCarrito(id, producto, precio, cantidad) {
 
 
 //funcion mostrar los productos en el carrito
-
 function mostrarCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const listaProductos = document.getElementById('lista-productos');
@@ -154,8 +153,12 @@ function mostrarCarrito() {
                 <div class="card-body">
                     <h3 class="card-title">${producto.producto}</h3>
                     <h6 class="card-title">Precio: $${producto.precio}</h6>
-                    <h6 class="card-title"> Cantidad: ${producto.cantidad}</h6>
-                    <button class="btn btn-grad form-control mb-3 mt-4" id="eliminar${producto.id}" > Eliminar </button>
+                    <h6 class="card-title"> Cantidad: 
+                        <button id="menos${producto.id}">-</button>
+                        <span>${producto.cantidad}</span>
+                        <button id="mas${producto.id}">+</button>
+                    </h6>
+                    <button class="btn btn-grad form-control mb-3" id="eliminar${producto.id}">Eliminar</button>
                 </div>
                 </div>
             </div>
@@ -166,10 +169,19 @@ function mostrarCarrito() {
         count += producto.cantidad;
         localStorage.setItem("total", JSON.stringify(total));
 
-        //eliminar el productoeliminar
-        const boton = document.getElementById(`eliminar${producto.id}`);
-        boton.addEventListener("click", () => {
+        const botonEliminar = document.getElementById(`eliminar${producto.id}`);
+        botonEliminar.addEventListener("click", () => {
             eliminarDelCarrito(producto.id);
+        });
+
+        const botonMenos = document.getElementById(`menos${producto.id}`);
+        botonMenos.addEventListener("click", () => {
+            actualizarCantidadCarritoMenos(producto.id);
+        });
+        
+        const botonMas = document.getElementById(`mas${producto.id}`);
+        botonMas.addEventListener("click", () => {
+            actualizarCantidadCarritoMas(producto.id);
         });
     });
 
@@ -177,10 +189,39 @@ function mostrarCarrito() {
     contadorContenedor.textContent = count;
 }
 
+function actualizarCantidadCarritoMenos(id) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const productoIndex = carrito.findIndex(producto => producto.id == id);
+
+    if (productoIndex !== -1) {
+        carrito[productoIndex].cantidad--;
+
+        // Verificar si la cantidad llega a cero y eliminar el producto del carrito en ese caso
+        if (carrito[productoIndex].cantidad === 0) {
+            carrito.splice(productoIndex, 1);
+        }
+
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        mostrarCarrito();
+    }
+}
+
+function actualizarCantidadCarritoMas(id) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const productoIndex = carrito.findIndex(producto => producto.id == id);
+
+    if (productoIndex !== -1) {
+        carrito[productoIndex].cantidad++;
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        mostrarCarrito();
+    }
+}
+
 function eliminarDelCarrito(id) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     carrito = carrito.filter(producto => producto.id !== id);
     localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem('total', JSON.stringify(total));
     mostrarCarrito();
 }
 
@@ -188,6 +229,7 @@ function eliminarDelCarrito(id) {
 
 function vaciarCarrito(){
     localStorage.removeItem('carrito');
+    localStorage.removeItem('total');
     mostrarCarrito();
 
 }
